@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        h2 {
+            color: #007bff;
+        }
+        .confirmation-details {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .confirmation-details ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .confirmation-details li {
+            margin-bottom: 10px;
+        }
+        .confirmation-details li strong {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .resort-name {
+            color: maroon; 
+            
+            font-weight: bold;
+        }
+        .success-message {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="success-message">
+        <h2>Booking Confirmation</h2>
+        <p>Your booking has been successfully confirmed, {{ booking.customer_name }}</p>
+    </div>
+    <div class="confirmation-details">
+        <p>Booking details:</p>
+        <ul>
+            <li><strong>Resort:</strong> <span class="resort-name">{{ booking.resort.Name }}</span></li>
+            <li><strong>Room:</strong> {{ booking.room.room_number }}</li>
+            <li><strong>Check-in:</strong> {{ booking.check_in }}</li>
+            <li><strong>Check-out:</strong> {{ booking.check_out }}</li>
+            <li><strong>Number of rooms booked:</strong> {{ booking.rooms_booked }}</li>
+        </ul>
+    </div>
+</body>
+</html>

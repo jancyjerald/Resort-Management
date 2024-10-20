@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Edit Rooms</title>
+    <style>
+        * {box-sizing: border-box;}
+        
+        body { 
+          margin: 0;
+          font-family: Arial, Helvetica, sans-serif;
+          background-image: url('https://img.freepik.com/free-photo/keyboard-headphones-near-stationery-glasses_23-2148128445.jpg?size=626&ext=jpg&ga=GA1.1.1202519111.1705204702&semt=ais');
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: cover;
+       }
+        
+        
+        .header {
+          overflow: hidden;
+          background-color: #f1f1f1;
+          padding: 20px 10px;
+        }
+        
+        .header a {
+          float: left;
+          color: black;
+          text-align: center;
+          padding: 12px;
+          text-decoration: none;
+          font-size: 18px; 
+          line-height: 25px;
+          border-radius: 4px;
+        }
+        
+        .header a.logo {
+          font-size: 25px;
+          font-weight: bold;
+        }
+        
+        .header a:hover {
+          background-color: #ddd;
+          color: black;
+        }
+        
+        .header a.active {
+          background-color: dodgerblue;
+          color: white;
+        }
+        
+        .header-right {
+          float: right;
+        }
+        
+        @media screen and (max-width: 500px) {
+          .header a {
+            float: none;
+            display: block;
+            text-align: left;
+          }
+          
+          .header-right {
+            float: none;
+          }
+        }
+    </style>
+</head>
+<body>
+  <div class="header">
+      <a href="#default" class="logo">Horizon Hues</a>
+      <div class="header-right">
+        <a class="active" href="/re">Home</a>
+        <a href="/contact">Contact</a>
+      </div>
+  </div>
+  
+  <div style="padding-left: 20px;">
+    <h2>Room Details</h2>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div style="float: left; padding-left: 90px;">
+            
+            <label for="room_number">Room Number:</label><br>
+            <input type="text" id="room_number" name="room_number" value="{{ room.room_number }}" readonly><br><br>
+            
+           
+            <label for="room_status">Room Status:</label><br>
+            <input type="text" id="room_status" name="room_status" value="{{ room.Room_status }}" readonly><br><br>
+            
+            
+            {% if room.Room_status == "Available" %}
+                <label for="price">Price:</label><br>
+                <input type="number" id="price" name="price" value="{{ room.Price }}"><br><br>
+                
+                <label for="total_room">Total Room:</label><br>
+                <input type="number" id="total_room" name="total_room" value="{{ room.total_room }}"><br><br>
+            {% else %}
+                <p>This room is not available for editing.</p>
+            {% endif %}
+            
+            
+            {% if room.Room_status == "Available" %}
+                <label for="room_images">Room Images:</label><br>
+                <input type="file" id="room_images" name="room_images" multiple><br><br>
+                
+                <h3>Existing Images</h3>
+                {% for img in room_images %}
+                    <input type="checkbox" name="delete_images" value="{{ img.id }}">
+                    <img src="{{ img.image.url }}" alt="Room Image" style="width: 100px;height: 100px;">
+                {% endfor %}
+            {% endif %}
+            
+           
+            {% if room.Room_status == "Available" %}
+                <button type="submit" style="background-color: #4718d3; color: #f5eeee;">Save Changes</button>
+            {% else %}
+                <button type="button" disabled>This room is not available for editing</button>
+            {% endif %}
+        </div>
+    </form>
+</div>
+</body>
+
+</html>

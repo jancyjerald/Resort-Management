@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Approval Page</title>
+</head>
+<body>
+    <h1>Owner Approval Page</h1>
+
+    {% for owner_approval in data %}
+    <div>
+        <h2>{{ owner_approval.Name }}</h2>
+        <div>
+            <p>Location: {{ owner_approval.Location }}</p>
+            <p>Contact: {{ owner_approval.Contact }}</p>
+            <p>Country: {{ owner_approval.Country }}</p>
+            <p>Approval Status: {% if owner_approval.is_approved %} Approved {% else %} Not Approved {% endif %}</p>
+    
+            <h3>Resorts:</h3>
+            <ul>
+                {% for resort in owner_approval.resorts.all %}
+                    <li>
+                        <h4>{{ resort.Name }}</h4>
+                        <p>Location: {{ resort.Location }}</p>
+                        <p>Contact: {{ resort.Contact }}</p>
+                        <p>Description: {{ resort.Description }}</p>
+                        <p>Country: {{ resort.Country }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+    
+            {% if not owner_approval.is_approved %}
+                <form action="{% url 'owner_approve' owner_approval.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" name="action" value="approve">Approve</button>
+                </form>
+                <form action="{% url 'owner_reject' owner_approval.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" name="action" value="reject">Reject</button>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+    <hr>
+    {% empty %}
+    <p>No owner approvals available.</p>
+    {% endfor %}
+</body>
+</html>
+
+
+

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #160404;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 400px;
+            background-color: #a0a0a0;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+           
+        }
+        h1 {
+            margin-top: 0;
+            color: #333;
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input[type="date"],
+        input[type="number"],
+        input[type="submit"] {
+            padding: 8px 12px; /* Adjust the padding */
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px; /* Adjust the font size */
+            background-color: #c7404b;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"] {
+            background-color: #c7404b;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Booking Form</h1>
+        <p>Welcome, {{ customer.Cust_name }}!</p>
+        <p>Booking for: {{ resort.Name }}</p> 
+        <form action="{% url 'customer_booking' resort_id=resort.id customer_id=customer.id room_id=room_id %}" method="post">
+
+            {% csrf_token %}
+
+            <label for="check_in">Check-in Date:</label>
+            <input type="date" id="check_in" name="check_in" required>
+            
+            <label for="check_out">Check-out Date:</label>
+            <input type="date" id="check_out" name="check_out" required>
+            
+            <label for="rooms_booked">Number of Rooms:</label>
+            <input type="number" id="rooms_booked" name="rooms_booked" min="1" required>
+                        {% if available_rooms %}
+                <p>Available Rooms:</p>
+                <ul>
+                    {% for room in available_rooms %}
+                        <li>{{ room }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No rooms available.</p>
+            {% endif %}
+            <label for="selected_room">Select Room:</label>
+            <select id="selected_room" name="selected_room" required>
+                {% for room in available_rooms %}
+                    <option value="{{ room.id }}">{{ room.Room_type }} - Capacity: {{ room.Capacity }} - Price: {{ room.Price }}</option>
+                {% endfor %}
+            </select><br><br>
+            
+            <input type="submit" value="Book Now">
+        </form>
+    </div>
+</body>
+</html>
+

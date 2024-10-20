@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Owner Bookings view</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f59999;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #7f0404;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #0f0e0e;
+        }
+
+        th {
+            background-color: #b34a4a;
+        }
+
+        tr:hover {
+            background-color: #850909;
+        }
+    </style>
+</head>
+<body>
+    <h1>Customer Bookings </h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Resort Name</th>
+                <th>Customer Name</th>
+                <th>Check-in Date</th>
+                <th>Check-out Date</th>
+                <th>Total Room </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for booking in bookings %}
+            <tr>
+                <td>{{ booking.resort.Name }}</td>
+                <td>{{ booking.customer.Cust_name }}</td>
+                <td>{{ booking.check_in }}</td>
+                <td>{{ booking.check_out }}</td>
+                <td>{{ booking.room.total_room }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

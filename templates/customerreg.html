@@ -1,0 +1,197 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Customer registration</title>
+    <link rel="stylesheet" href="/Horizon_Hues/static/css/style123.css">
+   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+   <style>
+   
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-image: url('https://images.unsplash.com/photo-1445019980597-93fa8acb246c?q=80&w=1474&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); 
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .bg-img {
+        background-color: rgba(0, 0, 0, 0.6); 
+        padding: 40px;
+        border-radius: 10px;
+        width: 400px;
+      }
+
+      .content {
+        text-align: center;
+      }
+
+      header {
+        color: #fff;
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+
+      .field {
+        position: relative;
+        margin-bottom: 20px;
+      }
+
+      .field input,
+      .field textarea {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        background-color: transparent;
+        color: #fff;
+        font-size: 16px;
+      }
+
+      .field input:focus,
+      .field textarea:focus {
+        outline: none;
+        border-color: #3498db;
+      }
+
+      .field .fa {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 15px;
+        color: #fff;
+      }
+
+      .field.space {
+        margin-bottom: 40px;
+      }
+
+      .field .pass-key {
+        padding-right: 40px;
+      }
+
+      .field .show {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 10px;
+        cursor: pointer;
+        color: #fff;
+      }
+
+      .field .show:hover {
+        color: #3498db;
+      }
+
+      .field input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #3498db;
+        color: #fff;
+        font-size: 18px;
+        cursor: pointer;
+      }
+
+      .field input[type="submit"]:hover {
+        background-color: #2980b9;
+      }
+
+      
+      @media (max-width: 480px) {
+        .bg-img {
+          width: 90%;
+        }
+      }
+          .navbar {
+      overflow: hidden;
+      background-color: #333;  
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+   </style>
+  </head>
+  <body>
+    <div class="bg-img">
+      <div class="navbar">
+        
+        <a class="active" style="color: blue; position: sticky; padding-left: 10px; padding-bottom: 5px;" href="{% url 'logins' %}">Already a user? Log In</a>
+       
+      </div>
+      <div class="content">
+        <header>Registration Form</header>
+        <form action="{% url 'customer_reg' %}" method="post">
+          {% csrf_token %}
+          <div class="field">
+            <span class="fa fa-user"></span>
+            <input type="text" name="custname" required placeholder="Enter your Name">
+          </div>
+          <div class="field">
+            <span class="fa fa-user"></span>
+            <input type="text" name="username" required placeholder="Enter your username">
+          </div>
+          <div class="field">
+            <span class="fa fa-phone"></span>
+            <input type="text" name="phonenum" required placeholder="Phone Number">
+          </div>
+          <div class="field">
+            <span class="fa fa-envelope"></span>
+            <input type="text" name="email" required placeholder="Email">
+          </div>
+          <div class="field">
+            <span class="fa fa-globe"></span>
+            <input type="text" name="Country" required placeholder="Country">
+          </div>
+          <div class="field">
+            <span class="fa fa-address-card"></span>
+            <textarea name="address" id="address" required placeholder="Address"></textarea>
+          </div>
+            
+          <div class="field space">
+            <span class="fa fa-lock"></span>
+            <input type="password" name="password" class="pass-key" required placeholder="Password">
+            <span class="show">SHOW</span>
+          </div>
+
+          <div class="field">
+            <input type="submit" value="REGISTER">
+          </div>
+        </form>
+
+        
+        </div>
+      </div>
+    
+
+    <script>
+      const pass_field = document.querySelector('.pass-key');
+      const showBtn = document.querySelector('.show');
+      showBtn.addEventListener('click', function(){
+       if(pass_field.type === "password"){
+         pass_field.type = "text";
+         showBtn.textContent = "HIDE";
+         showBtn.style.color = "#3498db";
+       }else{
+         pass_field.type = "password";
+         showBtn.textContent = "SHOW";
+         showBtn.style.color = "#222";
+       }
+      });
+    </script>
+
+
+  </body>
+</html>

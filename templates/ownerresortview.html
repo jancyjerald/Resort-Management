@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Owner Resort View</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+</head>
+<body>
+    <div class="container">
+        <div class="table-responsive">
+            <h1>Resort Details</h1>
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th>Resort Name</th>
+                        <th>Location</th>
+                        <th>Country</th>
+                        <th>Description</th>
+                        <th>Contact</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for resort_data_entry in resort_data %}
+                    <tr>
+                        <td>{{ resort_data_entry.resort.Name }}</td>
+                        <td>{{ resort_data_entry.resort.Location }}</td>
+                        <td>{{ resort_data_entry.resort.Country }}</td>
+                        <td>{{ resort_data_entry.resort.Description }}</td>
+                        <td>{{ resort_data_entry.resort.Contact }}</td>
+                        <td>
+                            <a href="{% url 'resortedit' owner_id=resort_data_entry.resort.Own_id.id resort_id=resort_data_entry.resort.id %}">Edit Resort</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6">
+                            <h3>Resort Images</h3>
+                            <div class="row">
+                                {% for resort_image in resort_data_entry.resort_images %}
+                                <div class="col-md-4">
+                                    <img src="{{ resort_image.image.url }}" alt="Resort Image" class="img-fluid" style="width: 300px;height: 300px;">
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6">
+                            <h3>Rooms</h3>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Room Number</th>
+                                        <th>Room Type</th>
+                                        <th>Capacity</th>
+                                        <th>Price</th>
+                                        <th>Status</th>
+                                        <th>Room Images</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for room_entry in resort_data_entry.rooms %}
+                                    <tr>
+                                        <td>{{ room_entry.room.room_number }}</td>
+                                        <td>{{ room_entry.room.get_Room_type_display }}</td>
+                                        <td>{{ room_entry.room.Capacity }}</td>
+                                        <td>{{ room_entry.room.Price }}</td>
+                                        <td>{{ room_entry.room.Room_status }}</td>
+                                        <td> 
+                                            <div class="row">
+                                                {% for room_image in room_entry.room_images %}
+                                                <div class="col-md-4">
+                                                    <img src="{{ room_image.image.url }}" alt="Room Image" class="img-fluid" style="width: 300px;height: 200px;">
+                                                </div>
+                                                {% endfor %}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            {% if room_entry.room.Room_status == "Available" %}
+                                                <a href="{% url 'edit_room' room_id=room_entry.room.id %}">Edit Room</a> 
+                                            {% else %}
+                                                <span>Room not available</span>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+</body>
+</html>

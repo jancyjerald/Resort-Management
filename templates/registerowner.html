@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Design by foolishdeveloper.com -->
+    <title>Register your buisness</title>
+ 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <!--Stylesheet-->
+    <style media="screen">
+      *,
+*:before,
+*:after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background-image: url(https://images.pexels.com/photos/1167021/pexels-photo-1167021.jpeg?auto=compress&cs=tinysrgb&w=600https://images.pexels.com/photos/237272/pexels-photo-237272.jpeg?auto=compress&cs=tinysrgb&w=600);
+    background-size: cover;
+}
+.background{
+    width: 430px;
+    height: 520px;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    left: 50%;
+    top: 50%;
+}
+.background .shape{
+    height: 200px;
+    width: 200px;
+    position: absolute;
+    border-radius: 80%;
+}
+
+form{
+    height: 600px;
+    width: 600px;
+    background-color: rgba(#11e3e3);
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    padding: 20px 35px;
+}
+form *{
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    outline-width: 2px;
+    border:#2b13e1;
+}
+
+
+.fadeInDown {
+  -webkit-animation-name: fadeInDown;
+  animation-name: fadeInDown;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+/* Simple CSS3 Fade-in Animation */
+@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+form{
+  opacity:0;
+  -webkit-animation:fadeIn ease-in 1;
+  -moz-animation:fadeIn ease-in 1;
+  animation:fadeIn ease-in 1;
+
+  -webkit-animation-fill-mode:forwards;
+  -moz-animation-fill-mode:forwards;
+  animation-fill-mode:forwards;
+
+  -webkit-animation-duration:0.1s;
+  -moz-animation-duration:0.1s;
+  animation-duration:0.1s;
+}
+
+
+form{
+  -webkit-animation-delay: 0.2s;
+  -moz-animation-delay: 0.2s;
+  animation-delay: 0.2s;
+}
+
+form {
+  -webkit-animation-delay: 0.3s;
+  -moz-animation-delay: 0.3s;
+  animation-delay: 0.3s;
+}
+
+form {
+  -webkit-animation-delay: 0.4s;
+  -moz-animation-delay: 0.4s;
+  animation-delay: 0.4s;
+}
+
+form {
+  -webkit-animation-delay: 0.1s;
+  -moz-animation-delay: 0.1s;
+  animation-delay: 0.1s;
+}
+
+form h3{
+    font-size: 50px;
+    font-weight: 500;
+    line-height: 50px;
+    text-align: center;
+}
+
+label{
+    display: block;
+    margin-top: 30px;
+    font-size: 16px;
+    font-weight: 500;
+}
+input{
+    display: block;
+    height: 50px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.07);
+    border-radius: 10px;
+    padding: 0 10px;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 300;
+    border: 2px solid rgb(97, 12, 224);
+}
+textarea{
+    display: block;
+    height: 50px;
+    width: 100%;
+    background-color: rgba(81, 73, 237, 0.07);
+    border-radius: 20px;
+    padding: 0 10px;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 300;
+    border: 2px solid rgb(96, 128, 232);
+}
+
+::placeholder{
+    color: #8914c4;
+}
+button{
+    
+    margin-top: 50px;
+    width: 100%;
+    background-color:#0008fd;
+    color: #171414;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 40px;
+    cursor: pointer;
+}
+button:hover {background-color:#13f14b ;}
+
+.social{
+  margin-top: 30px;
+  display: flex;
+}
+
+    </style>
+</head>
+<body>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+<form action="/re" method="post">
+  {% csrf_token %}
+    <h3 style="color: #fdf7f7; font-weight: bolder;font-style:italic; font-family:Verdana, Geneva, Tahoma, sans-serif;">Register Your Business</h3>
+    <br>
+    <table style="width: 100%;">
+
+   
+    <tr><td><label for="owners name"><b>Owners Name</b></label>
+      <input type="text" placeholder="Enter your Name" name="Oname" id="oname" required></td>
+      <td><label for="Company name"><b>Company Name</b></label>
+        <input type="text" placeholder="Enter Company name" name="Cname" id="Cname" required></td>
+    </tr>
+          
+    <tr><td><label for="Location"><b>Location</b></label>
+      <input type="text" placeholder="Enter your Location" name="Location" id="Location" required></td>
+      <td><label for="Country"><b>Country</b></label>
+        <input type="text" placeholder="Enter your Country" name="Country" id="Country" required></td>
+    </tr>
+
+    <tr><td><label for="Contact"><b>Contact</b></label>
+      <input type="text" placeholder="Enter your Contact" name="Contact" id="Contact" required></td>
+      <td><label for="email"><b>Email</b></label>
+        <input type="text" placeholder="Enter your Email" name="email" id="email" required></td>
+      
+    </tr>
+
+  
+
+    <tr><td><label for="username"><b>username</b></label>
+      <input type="text" placeholder="username" name="username" id="username" required></td>
+      <td><label for="psw"><b>Password</b></label>
+        <input type="password" placeholder="Enter your Password" name="psw" id="psw" required></td>
+    </tr>
+  </div>
+
+</table>
+<br>
+<br>
+
+<p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+      
+<button type="submit" class="registerbtn">Register</button>
+</form>
+</body>
+</html>
